@@ -5,6 +5,12 @@ public class Date {
 	private int month;
 	private int year;
 	
+	public Date() {
+		this.day=31;
+		this.month=9;
+		this.year=2000;
+	}
+
 	public Date (int day, int month, int year) throws DateException {
 		//this.month = month;
 		this.setMonth(month);
@@ -13,6 +19,26 @@ public class Date {
 		//this.year = year;
 		this.setYear(year);
 	}
+
+	public int getDay(){
+		return this.day;
+	}
+
+	public int getMonth(){
+		return this.month;
+	}
+
+	public int getYear(){
+		return this.year;
+	}
+
+	public boolean isSameYear(Date other){
+		if(this.year == other.getYear()){
+			return true;
+		}
+			return false;
+		}
+	
 	
 	public void setDay(int day) throws DateException {
 		if ( day < 1 || day > this.getDaysOfMonth() ) {
@@ -28,9 +54,13 @@ public class Date {
 		this.month = month;
 	}
 	
-	public void setYear (int year) {
+	public void setYear (int year) throws DateException {
+		if(year<0){
+			throw new DateException("Date error: Year " + year +" not valid");
+		}
 		this.year = year;
 	}
+
 	
 	private int getDaysOfMonth() {
 		int numDays;
